@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>StudyDesk: 1st semester study hub for B.Tech CSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5FA;--surface:#fff;--ink:#101B33;--muted:#56637F;--line:#D8DDEA;--hi:#FFD23F;--hi-ink:#101B33;--ok:#12814D;--bad:#CC2F36;--accent:#2D4EF5;--rule:rgba(45,78,245,.10);--margin:#E5484D;--glow:rgba(45,78,245,.10);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C1428;--surface:#15203A;--ink:#EAF0FF;--muted:#9AA7C4;--line:#26334F;--ok:#3DD598;--bad:#FF7075;--accent:#8EA2FF;--rule:rgba(142,162,255,.09);--glow:rgba(142,162,255,.12);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C1428;--surface:#15203A;--ink:#EAF0FF;--muted:#9AA7C4;--line:#26334F;--ok:#3DD598;--bad:#FF7075;--accent:#8EA2FF;--rule:rgba(142,162,255,.09);--glow:rgba(142,162,255,.12);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg) radial-gradient(900px 420px at 85% -80px,var(--glow),transparent) no-repeat;color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:1.05rem;line-height:1.55}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.35rem;letter-spacing:-.02em;text-decoration:none}
+.logo i{font-style:normal;background:var(--hi);color:var(--hi-ink);padding:0 .35em;border-radius:6px;margin-right:.15em}
+nav{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+nav a,.ghost{padding:8px 12px;border-radius:999px;text-decoration:none;font-size:.95rem;font-weight:600;color:var(--muted);background:none;border:0;cursor:pointer;font-family:inherit}
+nav a:hover,.ghost:hover{color:var(--ink);background:var(--surface)}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;position:relative;border:1px solid var(--line);border-radius:22px;background:var(--surface);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 35px,var(--rule) 35px,var(--rule) 36px);padding:44px 28px 40px 84px;overflow:hidden}
+.hero::before{content:"";position:absolute;left:56px;top:0;bottom:0;width:2px;background:var(--margin);opacity:.7}
+.hero h1{font-size:clamp(2.1rem,5.6vw,3.9rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0 0 16px}
+.hero p.s{color:var(--muted);margin:0 0 24px;font-size:1.12rem;max-width:44ch}
+.search{display:flex;gap:10px;flex-wrap:wrap}
+.search input{flex:1 1 220px;min-width:0;font:inherit;font-size:1.1rem;padding:15px 18px;border-radius:14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink)}
+.btn{font:inherit;font-weight:700;font-size:1rem;padding:14px 22px;border-radius:14px;border:2px solid var(--ink);background:var(--hi);color:var(--hi-ink);cursor:pointer;display:inline-block;text-decoration:none}
+.btn.alt{background:var(--bg);color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+.dash{align-self:center;background:var(--bg);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px;position:relative}
+.ring{position:relative;width:150px;height:150px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:12;stroke-linecap:round}
+.ring .tr{stroke:var(--line)}.ring .pg{stroke:var(--accent);stroke-dasharray:326.7;stroke-dashoffset:326.7;transition:stroke-dashoffset .6s}
+.ring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2.3rem;letter-spacing:-.03em;line-height:1}
+.ring small{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:0}
+.dash p{margin:0;text-align:center;color:var(--muted);font-size:.95rem}
+.exam{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;width:100%}
+.exam input{font:inherit;font-size:.9rem;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.cd{font-weight:800;font-size:1.05rem}
+section{padding:56px 0 0}
+h2{font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.025em;line-height:1.1;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{font:inherit;font-size:.92rem;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.count{color:var(--muted);font-size:.95rem;margin:0 0 14px}
+.subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.sub{--c:var(--accent);background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--c);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px}
+.sub .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.sub h3{margin:0;font-size:1.2rem;letter-spacing:-.01em}
+.pct{font-weight:700;font-size:.9rem;color:var(--muted);white-space:nowrap}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--c);border-radius:99px;transition:width .4s}
+details summary{cursor:pointer;font-weight:600;font-size:.95rem;color:var(--muted)}
+details ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+details label{display:flex;gap:10px;align-items:center;font-size:.95rem;cursor:pointer}
+details input{width:18px;height:18px;accent-color:var(--c)}
+.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}
+.links a{font-size:.86rem;font-weight:600;text-decoration:none;padding:5px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.links a.mine{border-style:dashed}
+.empty{padding:26px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);grid-column:1/-1}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.card h3{margin:0 0 4px;font-size:1.2rem}.card .n{color:var(--muted);font-size:.9rem;margin:0 0 14px}
+.inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.inputs label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted);font-weight:600}
+.field,select{font:inherit;font-size:1rem;padding:9px 11px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%;min-width:0}
+.wide{grid-column:1/-1}
+.out{margin-top:16px;padding:14px;border-radius:12px;background:var(--bg)}
+.out .big{font-size:2.3rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.out.good .big{color:var(--ok)}.out.bad .big{color:var(--bad)}
+.out p{margin:6px 0 0;color:var(--muted)}
+.gr{display:grid;grid-template-columns:1fr 64px 84px;gap:8px;align-items:center;font-size:.92rem;margin-bottom:6px}
+.gr .field{padding:6px 8px}
+.timer{font-size:3.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin:6px 0 14px;font-variant-numeric:tabular-nums}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.msg{margin:12px 0 0;font-weight:600;min-height:1.4em}.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
+footer{margin-top:64px;padding:26px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+@media (max-width:820px){.hero{grid-template-columns:1fr;padding:30px 18px 28px 46px}.hero::before{left:28px}}
+@media (prefers-reduced-motion:no-preference){.hero h1,.hero p.s,.search,.dash{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}.hero p.s{animation-delay:.07s}.search{animation-delay:.14s}.dash{animation-delay:.2s}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}.btn{transition:transform .15s}}
+@media (prefers-reduced-motion:reduce){.ring .pg,.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <a class="logo" href="#top"><i>Study</i>Desk</a>
+  <nav aria-label="Main"><a href="#find">Subjects</a><a href="#tools">Tools</a><a href="#contribute">Add a resource</a><button class="ghost" id="theme" type="button" aria-label="Switch colour theme">Dark mode</button></nav>
+</header>
+<main id="top">
+  <div class="hero">
+    <div>
+      <h1>Your whole first semester, in one tab.</h1>
+      <p class="s">Track topics for all 7 subjects, open notes, papers and lectures, and plan attendance and SGPA without juggling five apps.</p>
+      <form class="search" id="heroForm" role="search">
+        <input id="q" type="search" placeholder="Search a subject or topic, like “loops”" aria-label="Search subjects or topics" autocomplete="off">
+        <button class="btn" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="dash" aria-label="Your progress">
+      <div class="ring" role="img" aria-label="Overall topic progress"><svg viewBox="0 0 120 120"><circle class="tr" cx="60" cy="60" r="52"/><circle class="pg" id="pg" cx="60" cy="60" r="52"/></svg><b><span id="pc">0%</span><small id="pt">0 of 0 topics</small></b></div>
+      <div class="exam"><label for="ex" style="font-size:.85rem;color:var(--muted);font-weight:600">Next exam</label><input id="ex" type="date"><span class="cd" id="cd"></span></div>
+    </div>
+  </div>
+
+  <section id="find">
+    <h2>Subjects and topic tracker</h2>
+    <p class="lead">Tick topics as you finish them. Your progress is saved in this browser. The topic lists are common ones, so compare them with your official syllabus.</p>
+    <div class="chips" id="chips" role="group" aria-label="Resource type"></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="subs" id="list"></div>
+  </section>
+
+  <section id="tools">
+    <h2>Tools</h2>
+    <p class="lead">Three small helpers for the things every first-year ends up calculating.</p>
+    <div class="tools">
+      <div class="card">
+        <h3>Attendance planner</h3><p class="n">How many classes can you miss, or must you attend?</p>
+        <div class="inputs">
+          <label>Attended<input class="field ac" id="att" type="number" min="0" value="42"></label>
+          <label>Total held<input class="field ac" id="tot" type="number" min="0" value="52"></label>
+          <label class="wide">Target (%)<input class="field ac" id="tgt" type="number" min="1" max="99" value="75"></label>
+        </div>
+        <div class="out" id="aout" aria-live="polite"></div>
+      </div>
+      <div class="card">
+        <h3>SGPA calculator</h3><p class="n">Credits are placeholders, so match them to UMS.</p>
+        <div id="gr"></div>
+        <div class="out" id="gout" aria-live="polite"></div>
+      </div>
+      <div class="card">
+        <h3>Focus timer</h3><p class="n">Study in focused blocks with short breaks.</p>
+        <div class="timer" id="tm">25:00</div>
+        <div class="row"><button class="btn" id="go" type="button">Start</button><button class="btn alt" id="rs" type="button">Reset</button><button class="btn alt" id="md" type="button">Switch to break</button></div>
+        <p class="n" style="margin:14px 0 0" id="ses" aria-live="polite">Focus blocks done today: 0</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contribute">
+    <h2>Add a resource</h2>
+    <p class="lead">Found a good link? Add it to a subject. It is saved in this browser.</p>
+    <form class="card" id="addForm" novalidate>
+      <div class="inputs">
+        <label>Subject<select id="aSub"></select></label>
+        <label>Type<select id="aType"></select></label>
+        <label>Title<input class="field" id="aTitle" type="text" maxlength="60" placeholder="Unit 2 handwritten notes"></label>
+        <label>Link<input class="field" id="aUrl" type="url" placeholder="https://drive.google.com/…"></label>
+      </div>
+      <p style="margin:16px 0 0"><button class="btn" type="submit">Add resource</button></p>
+      <p class="msg" id="msg" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<footer>Built by a B.Tech CSE student for a CA1 project. Not run by or affiliated with Lovely Professional University, so always confirm your syllabus and dates on UMS.</footer>
+</div>
+<script>
+var T={notes:"Notes",pyq:"Previous papers",syllabus:"Syllabus",video:"Video lectures",practice:"Practice"};
+var S=[
+{n:"Python Programming",c:"#3B82F6",cr:4,t:["Variables and data types","Operators and control flow","Loops","Functions","Lists, tuples and dictionaries","Strings and file handling","OOP basics"]},
+{n:"HTML and Web Basics",c:"#F97316",cr:3,t:["Tags and page structure","Text, links and images","Lists and tables","Forms","Semantic HTML","CSS basics","Responsive layout"]},
+{n:"Mathematics",c:"#8B5CF6",cr:4,t:["Matrices","Eigenvalues","Differential calculus","Integral calculus","Sequences and series","Vectors"]},
+{n:"Physics",c:"#06B6D4",cr:3,t:["Waves and oscillations","Wave optics","Lasers and fibre optics","Quantum basics","Electromagnetism","Semiconductor physics"]},
+{n:"Orientation to Computing",c:"#EC4899",cr:2,t:["Computer basics","Number systems","Operating systems","Networks and the internet","Cyber security basics"]},
+{n:"Environmental Studies",c:"#22C55E",cr:2,t:["Ecosystems","Biodiversity","Natural resources","Pollution","Sustainability and policy"]},
+{n:"Basic Electronics (ECE)",c:"#EAB308",cr:3,t:["Circuit laws","Diodes","Transistors","Logic gates","Op-amps"]}
+];
+var G={"O":10,"A+":9,"A":8,"B+":7,"B":6,"C":5,"D":4,"F":0};
+var st={done:{},extra:{},exam:"",ses:0,day:""},type="all",qy="";
+try{var r=localStorage.getItem("sd2");if(r)st=Object.assign(st,JSON.parse(r))}catch(e){}
+var today=new Date().toDateString();if(st.day!==today){st.day=today;st.ses=0}
+function save(){try{localStorage.setItem("sd2",JSON.stringify(st))}catch(e){}}
+var $=function(i){return document.getElementById(i)};
+function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+function g(q){return "https://www.google.com/search?q="+encodeURIComponent(q)}
+function L(s){return{notes:g("LPU "+s.n+" notes pdf"),pyq:g("LPU "+s.n+" previous year question paper"),syllabus:g("LPU "+s.n+" syllabus"),video:"https://www.youtube.com/results?search_query="+encodeURIComponent(s.n+" full course"),practice:g(s.n+" practice questions with answers")}}
+function opts(el,a){el.innerHTML=a.map(function(o){return'<option value="'+esc(String(o[0]))+'">'+esc(o[1])+'</option>'}).join("")}
+function render(){
+  var q=qy.trim().toLowerCase(),keys=type==="all"?Object.keys(T):[type];
+  var hits=S.map(function(s,i){return{s:s,i:i}}).filter(function(o){return!q||(o.s.n+" "+o.s.t.join(" ")).toLowerCase().indexOf(q)>-1});
+  $("count").textContent=hits.length+(hits.length===1?" subject shown":" subjects shown");
+  if(!hits.length){$("list").innerHTML='<div class="empty">Nothing matches that search. Clear the search box to see all subjects.</div>';return}
+  $("list").innerHTML=hits.map(function(o){
+    var s=o.s,l=L(s);
+    var a=keys.map(function(k){return'<a href="'+l[k]+'" target="_blank" rel="noopener noreferrer">'+T[k]+'</a>'}).join("");
+    var m=(st.extra[o.i]||[]).filter(function(e){return type==="all"||e.type===type}).map(function(e){return'<a class="mine" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+esc(e.title)+'</a>'}).join("");
+    var li=s.t.map(function(t,j){return'<li><label><input type="checkbox" data-k="'+o.i+"-"+j+'"'+(st.done[o.i+"-"+j]?" checked":"")+'>'+esc(t)+'</label></li>'}).join("");
+    return'<article class="sub" style="--c:'+s.c+'"><div class="hd"><h3>'+esc(s.n)+'</h3><span class="pct" data-p="'+o.i+'"></span></div><div class="bar"><i data-b="'+o.i+'"></i></div><details><summary>Topic checklist</summary><ul>'+li+'</ul></details><div class="links">'+a+m+'</div></article>';
+  }).join("");
+  paint();
+}
+function paint(){
+  var tot=0,dn=0;
+  S.forEach(function(s,i){var d=0;s.t.forEach(function(_,j){if(st.done[i+"-"+j])d++});tot+=s.t.length;dn+=d;
+    var p=document.querySelector('[data-p="'+i+'"]'),b=document.querySelector('[data-b="'+i+'"]');
+    if(p)p.textContent=d+" of "+s.t.length;if(b)b.style.width=(d/s.t.length*100)+"%"});
+  var f=tot?dn/tot:0;$("pg").style.strokeDashoffset=326.7*(1-f);$("pc").textContent=Math.round(f*100)+"%";$("pt").textContent=dn+" of "+tot+" topics";
+}
+function countdown(){
+  var c=$("cd");if(!st.exam){c.textContent="";return}
+  var d=Math.ceil((new Date(st.exam+"T00:00:00")-new Date().setHours(0,0,0,0))/864e5);
+  c.textContent=d>1?d+" days left":d===1?"Tomorrow":d===0?"Today":"Date passed";
+}
+function att(){
+  var a=+$("att").value,t=+$("tot").value,p=+$("tgt").value,o=$("aout");
+  if(!(t>0)||a<0||a>t||!(p>0&&p<100)){o.className="out";o.innerHTML="<p>Enter valid numbers. Attended can’t be more than total.</p>";return}
+  var cur=a/t*100,r=cur.toFixed(1)+"%";
+  if(cur>=p){var m=Math.floor(a*100/p-t);o.className="out good";o.innerHTML='<div class="big">'+r+'</div><p>Above target. You can miss '+m+(m===1?" more class":" more classes")+' and stay at '+p+'% or higher.</p>'}
+  else{var n=Math.ceil((p*t-100*a)/(100-p));o.className="out bad";o.innerHTML='<div class="big">'+r+'</div><p>Below target. Attend the next '+n+(n===1?" class":" classes")+' in a row to reach '+p+'%.</p>'}
+}
+function buildGr(){
+  $("gr").innerHTML=S.map(function(s,i){return'<div class="gr"><span>'+esc(s.n)+'</span><input class="field gc" type="number" min="0" max="10" value="'+s.cr+'" aria-label="Credits for '+esc(s.n)+'"><select class="gg" aria-label="Grade for '+esc(s.n)+'">'+Object.keys(G).map(function(k){return'<option'+(k==="A"?" selected":"")+'>'+k+'</option>'}).join("")+'</select></div>'}).join("");
+  sg();
+}
+function sg(){
+  var c=document.querySelectorAll(".gc"),g=document.querySelectorAll(".gg"),tc=0,tp=0;
+  for(var i=0;i<c.length;i++){var v=+c[i].value||0;tc+=v;tp+=v*G[g[i].value]}
+  $("gout").innerHTML=tc?'<div class="big">'+(tp/tc).toFixed(2)+'</div><p>SGPA across '+tc+' credits</p>':"<p>Enter credits to see your SGPA.</p>";
+}
+var pm={mode:"focus",left:1500,run:false,end:0,h:null};
+function show(){var m=Math.floor(pm.left/60),s=pm.left%60;$("tm").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;$("ses").textContent="Focus blocks done today: "+st.ses}
+function stop(){clearInterval(pm.h);pm.run=false;$("go").textContent="Start"}
+function setMode(m){stop();pm.mode=m;pm.left=m==="focus"?1500:300;$("md").textContent=m==="focus"?"Switch to break":"Switch to focus";show()}
+$("go").onclick=function(){
+  if(pm.run){stop();return}
+  pm.run=true;pm.end=Date.now()+pm.left*1000;this.textContent="Pause";
+  pm.h=setInterval(function(){pm.left=Math.max(0,Math.round((pm.end-Date.now())/1000));show();
+    if(!pm.left){if(pm.mode==="focus"){st.ses++;save()}setMode(pm.mode==="focus"?"break":"focus")}},500);
+};
+$("rs").onclick=function(){setMode(pm.mode)};
+$("md").onclick=function(){setMode(pm.mode==="focus"?"break":"focus")};
+$("heroForm").addEventListener("submit",function(e){e.preventDefault();qy=$("q").value;render();$("find").scrollIntoView()});
+$("q").addEventListener("input",function(){qy=this.value;render()});
+$("chips").addEventListener("click",function(e){var b=e.target.closest(".chip");if(!b)return;type=b.dataset.t;[].forEach.call(this.children,function(c){c.setAttribute("aria-pressed",c===b)});render()});
+$("list").addEventListener("change",function(e){var k=e.target.dataset.k;if(!k)return;if(e.target.checked)st.done[k]=true;else delete st.done[k];save();paint()});
+$("ex").addEventListener("change",function(){st.exam=this.value;save();countdown()});
+[].forEach.call(document.querySelectorAll(".ac"),function(i){i.addEventListener("input",att)});
+$("gr").addEventListener("input",sg);
+$("addForm").addEventListener("submit",function(e){
+  e.preventDefault();var m=$("msg"),ti=$("aTitle").value.trim(),u=$("aUrl").value.trim(),ok=false;
+  try{var x=new URL(u);ok=x.protocol==="http:"||x.protocol==="https:"}catch(z){}
+  if(!ti){m.className="msg err";m.textContent="Add a short title so you remember what the link is.";return}
+  if(!ok){m.className="msg err";m.textContent="Enter a full link that starts with http:// or https://.";return}
+  var i=$("aSub").value;(st.extra[i]=st.extra[i]||[]).push({type:$("aType").value,title:ti,url:u});save();
+  m.className="msg ok";m.textContent="Added. Find it on that subject’s card.";$("aTitle").value="";$("aUrl").value="";render();
+});
+function setTheme(t){document.documentElement.setAttribute("data-theme",t);$("theme").textContent=t==="dark"?"Light mode":"Dark mode";try{localStorage.setItem("sd-theme",t)}catch(x){}}
+$("theme").addEventListener("click",function(){var d=document.documentElement.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");setTheme(d==="dark"?"light":"dark")});
+(function(){var t=null;try{t=localStorage.getItem("sd-theme")}catch(x){}if(t==="dark"||t==="light")setTheme(t);else if(matchMedia("(prefers-color-scheme: dark)").matches)$("theme").textContent="Light mode"})();
+$("chips").innerHTML=[["all","All types"]].concat(Object.keys(T).map(function(k){return[k,T[k]]})).map(function(t){return'<button type="button" class="chip" data-t="'+t[0]+'" aria-pressed="'+(t[0]==="all")+'">'+t[1]+'</button>'}).join("");
+opts($("aSub"),S.map(function(s,i){return[i,s.n]}));opts($("aType"),Object.keys(T).map(function(k){return[k,T[k]]}));
+$("ex").value=st.exam;countdown();buildGr();att();render();show();
+</script>
+</body>
+</html>
